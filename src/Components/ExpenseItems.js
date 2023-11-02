@@ -1,17 +1,22 @@
+import './ExpenseItem.css'
+
+function ExpenseItem({ title, amount, date, location }) {
 
 
-function ExpenseItem() {
     return (
-        <div>
-            <p>Expense Item</p>
-            <ul>
-                <li>Food Rs 100</li>
-                <li>Petrol Rs 100</li>
-                <li>Movies Rs 200</li>
-            </ul>
+        <div className='expense-item'>
+            <div>{date}</div>
+            <div className='expense-item__description'>
+                <h2>{title}</h2>
+                <div className='expense-item__price'>{amount}</div>
+                <h2>{location}</h2>
+            </div>
+
         </div>
 
     );
 }
 
 export default ExpenseItem;
+
+
