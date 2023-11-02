@@ -4,6 +4,7 @@ import './App.css';
 import Expense from './Components/Expense';
 import ExpenseForm from './Components/ExpenseForm';
 import { useState } from 'react';
+import ExpenseFilter from './Components/ExpenseFilter';
 const expenses = [
   {
     id: 'e1',
@@ -33,6 +34,7 @@ function App() {
 
 
   const [oldExpenses, setExpenses] = useState(expenses);
+  const [filteredYear, setFilteredYear] = useState('2023');
 
   const onSaveExpenseDataHandler = (enteredExpenseDate) => {
     const expenseData = { ...enteredExpenseDate, id: Math.random().toString() };
@@ -45,12 +47,28 @@ function App() {
   }
 
 
+  const onchangeFilter = (selectedYear) => {
+    setFilteredYear(() => {
+      return selectedYear;
+    })
+  }
+
+  const filteredList = oldExpenses.filter((expense) => new Date(expense.date).getFullYear().toString() === filteredYear)
+
 
   return (
     <div className="App">
 
       <ExpenseForm onSaveExpenseData={onSaveExpenseDataHandler} />
-      {oldExpenses.map((expenses) => (
+
+      <ExpenseFilter selected={filteredYear} onchangeFilter={onchangeFilter} />
+      {/* {filteredList.length !== 0 ? (filteredList.map((expenses) => (
+        <Expense key={expenses.id} title={expenses.title} amount={expenses.amount} date={expenses.date}
+          location={expenses.location} />
+      ))) : (<p>No Expenses Found</p>)} */}
+
+      {filteredList.length === 0 && <p>Only single Expense here. Please add more...</p>}
+      {filteredList.length > 0 && filteredList.map((expenses) => (
         <Expense key={expenses.id} title={expenses.title} amount={expenses.amount} date={expenses.date}
           location={expenses.location} />
       ))}
