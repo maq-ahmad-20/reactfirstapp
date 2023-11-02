@@ -2,7 +2,7 @@ import './ExpenseItem.css'
 import ExpenseDate from './ExpenseDate';
 import ExpenseDetails from './ExpenseDetails';
 import { useState } from 'react';
-function ExpenseItem({ title, amount, date, location }) {
+function ExpenseItem({ title, amount, date, location, year }) {
     const [newTitle, setTitle] = useState(title)
 
     const handleClicked = () => {
@@ -15,7 +15,7 @@ function ExpenseItem({ title, amount, date, location }) {
 
     return (
         <div className='expense-item'>
-            <ExpenseDate date={date} />
+            <ExpenseDate date={date} year={year} />
             <ExpenseDetails title={newTitle} amount={amount} location={location} />
 
             <button onClick={handleClicked}> Change Title</button>

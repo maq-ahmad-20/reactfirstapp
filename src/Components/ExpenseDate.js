@@ -1,4 +1,6 @@
-function ExpenseDate({ date }) {
+function ExpenseDate({ date, year }) {
+
+
 
 
     return (
