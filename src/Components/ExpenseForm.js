@@ -1,5 +1,5 @@
 import { useState } from "react";
-function ExpenseForm() {
+function ExpenseForm({ onSaveExpenseData }) {
     const [enteredTilte, setEnteredTitle] = useState('');
     const [enteredAmount, setAmount] = useState('');
     const [enteredDate, setDate] = useState('');
@@ -61,12 +61,14 @@ function ExpenseForm() {
         const obj = {
             "title": enteredTilte,
             "amount": enteredAmount,
-            "date": enteredDate,
+            "date": new Date(enteredDate).toDateString(),
             "location": enteredLocation
         }
-        console.log(obj);
-
+        //console.log(obj);
+        onSaveExpenseData(obj);
+        setAmount(''); setDate(''); setEnteredTitle(''); setLocation('');
     }
+    // using value in inpu provides two way binding in input ir after submit it clear the form inputs
 
     return (
         <div>
@@ -75,15 +77,15 @@ function ExpenseForm() {
 
             <form onSubmit={(e) => { handleSubmitForm(e) }} >
                 <label htmlFor="tit">title</label>
-                <input type="text" required id="tit" onChange={(e) => { hadleOnchangeTitle(e.target.value) }} >
+                <input type="text" value={enteredTilte} required id="tit" onChange={(e) => { hadleOnchangeTitle(e.target.value) }} >
 
                 </input>
                 <label>Amount</label>
-                <input type="number" required onChange={(e) => { amountChangeHanlder(e.target.value) }}></input>
+                <input type="number" value={enteredAmount} required onChange={(e) => { amountChangeHanlder(e.target.value) }}></input>
                 <label>Date</label>
-                <input type="date" onChange={(e) => { dateChangeHanlder(e.target.value) }}></input>
+                <input type="date" value={enteredDate} onChange={(e) => { dateChangeHanlder(e.target.value) }}></input>
                 <label>location</label>
-                <input type="text" onChange={(e) => { locationChangeHanlder(e.target.value) }}></input>
+                <input type="text" value={enteredLocation} onChange={(e) => { locationChangeHanlder(e.target.value) }}></input>
                 <button type="submit" >AddExpense</button>
             </form>
 
