@@ -36,7 +36,7 @@ function App() {
 
       <ExpenseForm />
       {expenses.map((expenses) => (
-        <Expense title={expenses.title} amount={expenses.amount} date={expenses.date}
+        <Expense key={expenses.id} title={expenses.title} amount={expenses.amount} date={expenses.date}
           location={expenses.location} />
       ))}
 

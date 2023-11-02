@@ -21,12 +21,59 @@ function ExpenseForm() {
         console.log(val)
     }
 
+    // Multi -state apporch 
+    // const[userInput , setuserInput] = useState({
+    //     enteredTitle :'',
+    //     enteredAmount :'',
+    //     enteredDate :'',
+    //     enteredLocation : ''
+    // })
+
+    // function amountChangeHanlder(val) {
+    //     setuserInput((prev)=> {
+
+    //        return  {...prev, enteredAmount :val} 
+    //     });
+    // }
+    // function dateChangeHanlder(val) {
+    //     setuserInput( {
+
+    //         ...userInput, enteredDate :val 
+    //     });
+    // }
+    // function locationChangeHanlder(val) {
+    //     setuserInput( {
+
+    //         ...userInput, enteredLocation :val 
+    //     });
+    // }
+
+
+    // function hadleOnchangeTitle(val) {
+    //     setuserInput( {
+
+    //         ...userInput, enteredTitle :val 
+    //     });
+    // }
+
+    function handleSubmitForm(e) {
+        e.preventDefault();
+        const obj = {
+            "title": enteredTilte,
+            "amount": enteredAmount,
+            "date": enteredDate,
+            "location": enteredLocation
+        }
+        console.log(obj);
+
+    }
+
     return (
         <div>
 
 
 
-            <form>
+            <form onSubmit={(e) => { handleSubmitForm(e) }} >
                 <label htmlFor="tit">title</label>
                 <input type="text" required id="tit" onChange={(e) => { hadleOnchangeTitle(e.target.value) }} >
 
@@ -37,7 +84,7 @@ function ExpenseForm() {
                 <input type="date" onChange={(e) => { dateChangeHanlder(e.target.value) }}></input>
                 <label>location</label>
                 <input type="text" onChange={(e) => { locationChangeHanlder(e.target.value) }}></input>
-                <button >AddExpense</button>
+                <button type="submit" >AddExpense</button>
             </form>
 
         </div>
