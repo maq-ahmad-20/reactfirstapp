@@ -36,9 +36,11 @@ function App() {
 
   const onSaveExpenseDataHandler = (enteredExpenseDate) => {
     const expenseData = { ...enteredExpenseDate, id: Math.random().toString() };
-    console.log(expenseData)
-    expenses.push(expenseData)
-    setExpenses(expenses);
+    // console.log(expenseData)
+    // expenses.push(expenseData)
+    setExpenses((prevexpenses) => {
+      return [expenseData, ...prevexpenses]
+    });
 
   }
 
