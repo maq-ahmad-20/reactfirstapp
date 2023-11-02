@@ -1,8 +1,23 @@
-//import { useState } from "react";
+import { useState } from "react";
 function ExpenseForm() {
-    //const[oldTilte , seTTitle] = useState('');
+    const [enteredTilte, setEnteredTitle] = useState('');
+    const [enteredAmount, setAmount] = useState('');
+    const [enteredDate, setDate] = useState('');
+    const [enteredLocation, setLocation] = useState('');
 
-    function hadleOnchange(val) {
+    function amountChangeHanlder(val) {
+        setAmount(val);
+    }
+    function dateChangeHanlder(val) {
+        setDate(val);
+    }
+    function locationChangeHanlder(val) {
+        setLocation(val);
+    }
+
+
+    function hadleOnchangeTitle(val) {
+        setEnteredTitle(val);
         console.log(val)
     }
 
@@ -13,15 +28,15 @@ function ExpenseForm() {
 
             <form>
                 <label htmlFor="tit">title</label>
-                <input type="text" required id="tit" onChange={(e) => { hadleOnchange(e.target.value) }} >
+                <input type="text" required id="tit" onChange={(e) => { hadleOnchangeTitle(e.target.value) }} >
 
                 </input>
                 <label>Amount</label>
-                <input type="number" required></input>
+                <input type="number" required onChange={(e) => { amountChangeHanlder(e.target.value) }}></input>
                 <label>Date</label>
-                <input type="date"></input>
+                <input type="date" onChange={(e) => { dateChangeHanlder(e.target.value) }}></input>
                 <label>location</label>
-                <input type="text"></input>
+                <input type="text" onChange={(e) => { locationChangeHanlder(e.target.value) }}></input>
                 <button >AddExpense</button>
             </form>
 
