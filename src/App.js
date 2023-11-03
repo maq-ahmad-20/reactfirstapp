@@ -2,7 +2,7 @@
 import './App.css';
 
 import Expense from './Components/Expense';
-import ExpenseForm from './Components/ExpenseForm';
+import ExpenseAddButton from './Components/ExpenseAddButton';
 import { useState } from 'react';
 import ExpenseFilter from './Components/ExpenseFilter';
 const expenses = [
@@ -59,7 +59,7 @@ function App() {
   return (
     <div className="App">
 
-      <ExpenseForm onSaveExpenseData={onSaveExpenseDataHandler} />
+      <ExpenseAddButton onSaveExpenseDataHandler={onSaveExpenseDataHandler} />
 
       <ExpenseFilter selected={filteredYear} onchangeFilter={onchangeFilter} />
       {/* {filteredList.length !== 0 ? (filteredList.map((expenses) => (
@@ -67,7 +67,7 @@ function App() {
           location={expenses.location} />
       ))) : (<p>No Expenses Found</p>)} */}
 
-      {filteredList.length === 0 && <p>Only single Expense here. Please add more...</p>}
+      {filteredList.length === 0 && <p>No Expense here. Please add more...</p>}
       {filteredList.length > 0 && filteredList.map((expenses) => (
         <Expense key={expenses.id} title={expenses.title} amount={expenses.amount} date={expenses.date}
           location={expenses.location} />

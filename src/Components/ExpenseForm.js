@@ -1,5 +1,5 @@
 import { useState } from "react";
-function ExpenseForm({ onSaveExpenseData }) {
+function ExpenseForm({ onSaveExpenseData, goBackToAddExpense }) {
     const [enteredTilte, setEnteredTitle] = useState('');
     const [enteredAmount, setAmount] = useState('');
     const [enteredDate, setDate] = useState('');
@@ -87,6 +87,7 @@ function ExpenseForm({ onSaveExpenseData }) {
                 <label>location</label>
                 <input type="text" value={enteredLocation} onChange={(e) => { locationChangeHanlder(e.target.value) }}></input>
                 <button type="submit" >AddExpense</button>
+                <button onClick={goBackToAddExpense}>Cancel</button>
             </form>
 
         </div>
