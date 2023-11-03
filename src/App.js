@@ -5,6 +5,7 @@ import Expense from './Components/Expense';
 import ExpenseAddButton from './Components/ExpenseAddButton';
 import { useState } from 'react';
 import ExpenseFilter from './Components/ExpenseFilter';
+import ExpensesChart from './Components/ExpensesChart';
 const expenses = [
   {
     id: 'e1',
@@ -66,12 +67,15 @@ function App() {
         <Expense key={expenses.id} title={expenses.title} amount={expenses.amount} date={expenses.date}
           location={expenses.location} />
       ))) : (<p>No Expenses Found</p>)} */}
+      <ExpensesChart expenses={filteredList} />
 
       {filteredList.length === 0 && <p>No Expense here. Please add more...</p>}
       {filteredList.length > 0 && filteredList.map((expenses) => (
         <Expense key={expenses.id} title={expenses.title} amount={expenses.amount} date={expenses.date}
           location={expenses.location} />
       ))}
+
+
 
     </div>
   );
